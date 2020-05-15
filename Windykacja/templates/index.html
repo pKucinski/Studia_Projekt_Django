@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+{% block title %} Windex | Profil {% endblock %}
+{% block body %}
+{% load static %}
+
+<h1>Profil</h1>
+
+<div class="card-profile">
+    {% for data in info %}
+    {% if user.id == data.id %}
+    {% if basic.id == info.id %}
+    {% if info.image %}
+    <img src="/media/{{data.image}}" alt="">
+    {% else %}
+    <img src="/media/Workers_photo/default.jpg" alt="">
+    {% endif %}
+    {% endif %}
+
+    <p>
+    <b>{{ user.first_name }} {{ user.last_name }}</b><br>
+    Numer pracownika : {{ data.worker_number }}<br>
+    Nazwa użytkownika: {{ user.username }} <br>
+    E-mail: {{ user.email }}<br>
+    Numer telefonu: {{ data.phone }} </br>
+    </p>
+
+    {% endif %}
+    {% endfor %}
+</div>
+
+</br>
+<h3>Moje sprawy</h3>
+
+<div class="cases-profile">
+    {% for case in cases %}
+    {% if case.prowadzacy_sprawe.id == user.id %}
+
+    <div class="box-profile1">
+        <div class="head">Dłużnik</div>
+        <div class="box-info">
+            {{ case.nazwa_dluznika }} {{ case.nazwa_dluznika_cd }} </br>
+            {{ case.adres_dluznika }} </br>
+            {{ case.adres_dluznika_cd }}
+        </div>
+    </div>
+    <div class="box-profile2">
+        <div class="head">Wierzyciel</div>
+        <div class="box-info">
+            {{ case.nazwa_wierzyciela }} {{ case.nazwa_wierzyciela_cd }}</br>
+            {{ case.adres_dluznika }}</br>
+            {{ case.adres_dluznika_cd }}
+        </div>
+    </div>
+    <div class="box-profile3">
+        <div class="head">Zadłużenie</div>
+        <div class="box-info">
+            Kwota: </br>
+            Odsetki: </br>
+            Prowizja:
+        </div>
+    </div>
+    <div class="box-profile4">
+        <div class="box-info">
+            <a href="/sprawa/{{case.id}}/">Więcej</a>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <!-- JS Files-->
+    <script src="{% static 'js/clock.js' %}"></script>
+
+    <!-- CSS Files-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+     <script src="https://kit.fontawesome.com/9319ce92b6.js"></script>
+
+    </head>
+
+    <body onload="clock();">
+
+    <div id="conteiner">
+      <div id="topbar">
+        <div id="logo">
+          Panel Spraw {% if user.is_superuser %}(admin mode){% endif %}
+        </div>
+        <div id="clock"></div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="news">
+        Ważne: Proszę pamiętać żeby przesłać dzisiaj karty reklamacji!
+      </div>
+      <div id="nav">
+        <ul>
+          <li><a href="/">Profil</a></li>
+          <li><a href="/sprawy">Sprawy</a></li>
+          <li><a href="/windykatorzy">Windykatorzy</a></li>
+          <li><a href="/pomoc">Pomoc</a></li>
+          <li><a href="{% url 'logout' %}">Wyloguj</a></li>
+        </ul>
+      </div>
+    <div id="content">
+
+
+{% block body %} {% endblock %}
+
+    </div>
+    <div style="clear:both"></div>
+
+<div style="clear:both"></div>
+      <div id="footer">
+        Wszelkie prawa zastrzeżone &copy; 2020 - Windex.pl
+      </div>
+    </div>
+
+  </body>
+</html>
+
+

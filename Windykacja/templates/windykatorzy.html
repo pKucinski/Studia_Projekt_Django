@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+{% block title %} Windex | Windykatorzy {% endblock %}
+{% block body %}
+{% load static %}
+
+
+<h1>Windykatorzy</h1>
+
+{% if user.is_superuser %}
+<button><a href="/nowypracownik/">Nowy pracownik</a></button></br>
+{% endif %}
+
+{% for basic in basic_info %}
+    <div class="card-employees">
+        {% for info in extra_info %}
+            {% if basic.id == info.id %}
+                 {% if info.image %}
+                      <img src="/media/{{info.image}}" alt="">
+                 {% else %}
+                     <img src="/media/Workers_photo/default.jpg" alt="">
+                {% endif %}
+            {% endif  %}
+        {% endfor %}
+
+        <div class="id-employees">{{ basic.worker_number }}</div>
+        <div class="toplabel">
+           {{ basic.first_name }} {{ basic.last_name }}      </br>
+        </div>
+        {% for info in extra_info %}
+            {% if basic.id == info.id %}
+                <div class="contact-employees">
+                    <i class="far fa-envelope"></i>  <a href = "mailto: {{basic.email}}">{{ basic.email }}</a></br>
+                    <i class="fas fa-phone"></i>{{ info.phone }}
+                </div>
+            {% endif  %}
+        {% endfor %}
+
+            {% if user.is_superuser %}
+                </br><button><a href="/editworker/{{basic.id}}/">Edytuj</a></button>
+                     <button><a href="/deleteworker/{{basic.id}}/">Usuń</a></button>
+            {% endif %}
+
+        <div style="clear:both"></div>
+    </div>
+{% endfor %}
+
+{% endblock %}

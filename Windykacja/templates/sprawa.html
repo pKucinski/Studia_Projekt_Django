@@ -1,0 +1,85 @@
+{% extends 'main.html' %}
+{% block title %} Windex | Profil {% endblock %}
+{% block body %}
+{% load static %}
+
+
+
+<div class="table-agent"> Prowadzący: {{cases.prowadzacy_sprawe.first_name}} {{cases.prowadzacy_sprawe.last_name}}</div>
+
+<div class="table">
+
+<div class="table-data">
+    <div class="table-name">
+        Dłużnik: {{cases.nazwa_dluznika}} {{cases.nazwa_dluznika_cd}} </br>
+        ({{cases.pesel_lub_nip_dluznika}})
+    </div>
+    <div class="table-address">
+        <div class="header">Adres:</div>
+        {{cases.adres_dluznika}} </br> {{cases.adres_dluznika_cd}}
+    </div>
+    <div class="table-email-phone">
+         <div class="header">E-mail i telefon:</div>
+        {{cases.telefon_dluznika}}</br>
+        <a href = "mailto:{{cases.email_dluznika}}">{{cases.email_dluznika}}</a></br>
+    </div>
+    <div style="clear:both"></div>
+
+</div>
+<div style="border-left: 1px solid #000000;" class="table-data">
+    <div class="table-name">
+        Wierzyciel: {{cases.nazwa_wierzyciela}} {{cases.nazwa_wierzyciela_cd}} </br>
+        ({{cases.pesel_lub_nip_wierzyciela}})
+    </div>
+    <div class="table-address">
+        <div class="header">Adres:</div>
+        {{cases.adres_wierzyciela}} </br> {{cases.adres_wierzyciela_cd}}
+    </div>
+    <div class="table-email-phone">
+         <div class="header">E-mail i telefon:</div>
+        {{cases.telefon_wierzyciela}}</br>
+        <a href = "mailto:{{cases.email_wierzyciela}}">{{cases.email_wierzyciela}}</a></br>
+    </div>
+    <div style="clear:both"></div>
+
+
+
+</div>
+<div style="clear:both"></div>
+
+</div>
+
+<div class="table-account">Numer konta: {{cases.numer_konta}}</div>
+
+
+
+<h3>Dokumenty</h3>
+
+
+<div class="table-documents-main">
+
+<div class="name1">Nazwa (numer)</div>
+<div class="name2">Termin</div>
+<div class="name3">Kwota</div>
+<div class="name4">Załącznik</div>
+<div style="clear:both"></div>
+</div>
+
+{% for document in documents %}
+
+    {% if cases.id == document.case.id %}
+
+    <div class="table-documents">{{document.nazwa}} ({{document.numer_dokumenttu}})</div>
+    <div class="table-documents">{{document.termin_splaty}}</div>
+    <div class="table-documents">{{document.kwota}}zł</div>
+    <div style="text-align:center;" class="table-documents"><a href="{{document.plik.url}}">Podgląd</a></div>
+    <button class="table-button"><a href="/deletedocument/{{document.case.id}}/">Zamknij</a></button>
+    <div style="clear:both"></div>
+
+
+{% endif %}
+
+
+
+{% endfor %}
+{% endblock %}

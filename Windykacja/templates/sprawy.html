@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+{% block title %} Windex | Sprawy {% endblock %}
+{% block body %}
+{% load static %}
+
+
+
+<h1>Sprawy</h1>
+
+{% if user.is_superuser %}
+<button><a href="/nowypracownik/">Nowa sprawa</a></button></br>
+{% endif %}
+
+<div class="cases-profile">
+    {% for case in cases %}
+
+
+    <div class="box-profile1">
+        <div class="head">Dłużnik</div>
+        <div class="box-info">
+            {{ case.nazwa_dluznika }} {{ case.nazwa_dluznika_cd }} </br>
+            {{ case.adres_dluznika }} </br>
+            {{ case.adres_dluznika_cd }}
+        </div>
+    </div>
+    <div class="box-profile2">
+        <div class="head">Wierzyciel</div>
+        <div class="box-info">
+            {{ case.nazwa_wierzyciela }} {{ case.nazwa_wierzyciela_cd }}</br>
+            {{ case.adres_dluznika }}</br>
+            {{ case.adres_dluznika_cd }}
+        </div>
+    </div>
+    <div class="box-profile3">
+        <div class="head">Zadłużenie</div>
+        <div class="box-info">
+            Kwota: </br>
+            Odsetki: </br>
+            Prowizja:
+        </div>
+    </div>
+    <div class="box-profile4">
+        <div class="box-info">
+            <a href="/sprawa/{{case.id}}/">Więcej</a>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+{% endfor %}
+</div>
+
+
+
+{% endblock %}
+

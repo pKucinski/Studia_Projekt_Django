@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block title %} Windex | Nowy pracownik {% endblock %}
+{% block body %}
+{% load static %}
+
+
+
+<h1>Czy na pewno chcesz zamknąć dokument?</h1>
+
+
+<form class="button" method="post">
+    {% csrf_token %}
+    <button type="submit">Tak</button>
+</form>
+
+<form class="button" action="/sprawa/{{document.id}}/">
+    <button type="submit">Nie</button>
+</form>
+
+{% endblock %}

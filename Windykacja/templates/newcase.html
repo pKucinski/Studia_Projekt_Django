@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% block title %} Windex | Nowa sprawa {% endblock %}
+{% block body %}
+{% load static %}
+
+
+
+<form method='POST' enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{ form }} <br>
+      <button type="submit">Dodaj sprawe</button>
+</form>
+
+{% endblock %}
+
+
+

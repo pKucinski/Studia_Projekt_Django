@@ -29,6 +29,6 @@ obowiązuje walidacja danych wprowadzanych do tabel .
 
 ### DELETE
 * Możliwość usunięcia pracownika (tylko jako admin)
-# Możliwość usunięcia sprawy 
-# Możliwość usunięcia dokumentów
+* Możliwość usunięcia sprawy 
+* Możliwość usunięcia dokumentów
 

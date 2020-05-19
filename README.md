@@ -1,4 +1,4 @@
-# Strona internetowa firmy windykacyjnej
+# Strona internetowa firmy windykacyjnej (strona w budowie)
 #### Projekt na zaliczenie
 
 Informacje:
